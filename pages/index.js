@@ -16,19 +16,17 @@ const Container = styled.div`
 export default function products(props) {
   const [cartItems, setCartItems] = useState([]);
   const [cartState, setcartState] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
   const toggleCartState = () => setcartState((value) => !value);
   const isClothing = props.isClothing;
   const addToCart = (product) => {
     const exist = cartItems.find((x) => x.id === product.id);
     if (exist) {
-      setCartItems(
-        cartItems.map((x) =>
-          x.id === product.id ? { ...exist, qty: exist + 1 } : x
-        )
-      );
+      setCartItems(cartItems.map((x) => (x.id === product.id ? { ...exist, qty: exist.qty + 1 } : x)));
     } else {
       setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
+    setTotalPrice(Number(totalPrice) + Number(product.price));
   };
 
   function RenderShop() {
@@ -38,57 +36,31 @@ export default function products(props) {
           <div className="flex items-baseline mt-4 mb-6 pb-6 border-b border-slate-200">
             <div className="space-x-1 flex text-sm font-medium">
               <label>
-                <input
-                  className="sr-only peer"
-                  name="size"
-                  type="radio"
-                  value="xs"
-                  defaultChecked
-                />
+                <input className="sr-only peer" name="size" type="radio" value="xs" defaultChecked />
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 peer-checked:bg-slate-100 peer-checked:text-slate-900">
                   XS
                 </div>
               </label>
               <label>
-                <input
-                  className="sr-only peer"
-                  name="size"
-                  type="radio"
-                  value="s"
-                />
+                <input className="sr-only peer" name="size" type="radio" value="s" />
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 peer-checked:bg-slate-100 peer-checked:text-slate-900">
                   S
                 </div>
               </label>
               <label>
-                <input
-                  className="sr-only peer"
-                  name="size"
-                  type="radio"
-                  value="m"
-                />
+                <input className="sr-only peer" name="size" type="radio" value="m" />
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 peer-checked:bg-slate-100 peer-checked:text-slate-900">
                   M
                 </div>
               </label>
               <label>
-                <input
-                  className="sr-only peer"
-                  name="size"
-                  type="radio"
-                  value="l"
-                />
+                <input className="sr-only peer" name="size" type="radio" value="l" />
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 peer-checked:bg-slate-100 peer-checked:text-slate-900">
                   L
                 </div>
               </label>
               <label>
-                <input
-                  className="sr-only peer"
-                  name="size"
-                  type="radio"
-                  value="xl"
-                />
+                <input className="sr-only peer" name="size" type="radio" value="xl" />
                 <div className="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 peer-checked:bg-slate-100 peer-checked:text-slate-900">
                   XL
                 </div>
@@ -116,12 +88,8 @@ export default function products(props) {
                       <a> {product.name}</a>
                     </Link>
                   </h1>
-                  <div className="flex-auto text-lg font-medium text-slate-500">
-                    {product.price}
-                  </div>
-                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">
-                    In stock
-                  </div>
+                  <div className="flex-auto text-lg font-medium text-slate-500">{product.price}</div>
+                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">In stock</div>
                 </div>
                 <Sizes isClothing={product.clothing}></Sizes>
                 <div className="flex space-x-4 mb-5 text-sm font-medium">
@@ -146,12 +114,7 @@ export default function products(props) {
                     type="button"
                     aria-label="Like"
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
+                    <svg width="20" height="20" fill="currentColor" aria-hidden="true">
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -160,9 +123,7 @@ export default function products(props) {
                     </svg>
                   </button>
                 </div>
-                <p className="text-sm text-slate-500">
-                  Free shipping on all continental US orders.
-                </p>
+                <p className="text-sm text-slate-500">Free shipping on all continental US orders.</p>
               </form>
             </div>
           );
@@ -186,12 +147,8 @@ export default function products(props) {
                       <a> {product.name}</a>
                     </Link>
                   </h1>
-                  <div className="flex-auto text-lg font-medium text-slate-500">
-                    {product.price}
-                  </div>
-                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">
-                    In stock
-                  </div>
+                  <div className="flex-auto text-lg font-medium text-slate-500">{product.price}</div>
+                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">In stock</div>
                 </div>
                 <Sizes isClothing={product.clothing}></Sizes>
                 <div className="flex space-x-4 mb-5 text-sm font-medium">
@@ -217,12 +174,7 @@ export default function products(props) {
                     type="button"
                     aria-label="Like"
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
+                    <svg width="20" height="20" fill="currentColor" aria-hidden="true">
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -231,9 +183,7 @@ export default function products(props) {
                     </svg>
                   </button>
                 </div>
-                <p className="text-sm text-slate-500">
-                  Free shipping on all continental US orders.
-                </p>
+                <p className="text-sm text-slate-500">Free shipping on all continental US orders.</p>
               </form>
             </div>
           </div>
@@ -242,12 +192,12 @@ export default function products(props) {
     });
   }
 
-  function renderProducts() {
+  function renderCart() {
     if (cartState) {
-      return cartItems.map((product) => {
+      const lol = cartItems.map((product, index) => {
         return (
-          <div className=" flex justify-center">
-            <div className="sm:flex   font-serif lg:w-1/2">
+          <div key={product.id} className=" flex justify-center">
+            <div className="sm:flex font-serif lg:w-1/2">
               <div className="flex-none w-1/2 sm:w-52 sm:relative">
                 <img
                   src={product.img}
@@ -263,12 +213,8 @@ export default function products(props) {
                       <a> {product.name}</a>
                     </Link>
                   </h1>
-                  <div className="flex-auto text-lg font-medium text-slate-500">
-                    {product.price}
-                  </div>
-                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">
-                    In stock
-                  </div>
+                  <div className="flex-auto text-lg font-medium text-slate-500">{product.price}</div>
+                  <div className="text-xs leading-6 font-medium uppercase text-slate-500">In stock</div>
                 </div>
                 <div className="flex space-x-4 mb-5 text-sm font-medium">
                   <div className="flex-auto flex space-x-4 pr-4">
@@ -285,7 +231,7 @@ export default function products(props) {
                       className="flex-none w-1/2 h-12 uppercase font-medium tracking-wider border border-slate-200 text-slate-900"
                       type="button"
                     >
-                      Add to Cart
+                      {cartItems[index].qty > 0 ? "+ " + cartItems[index].qty + " -" : "Add to Cart"}
                     </button>
                   </div>
                   <button
@@ -293,12 +239,7 @@ export default function products(props) {
                     type="button"
                     aria-label="Like"
                   >
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
+                    <svg width="20" height="20" fill="currentColor" aria-hidden="true">
                       <path
                         fillRule="evenodd"
                         clipRule="evenodd"
@@ -307,14 +248,19 @@ export default function products(props) {
                     </svg>
                   </button>
                 </div>
-                <p className="text-sm text-slate-500">
-                  Free shipping on all continental US orders.
-                </p>
+                <p className="text-sm text-slate-500">Free shipping on all continental US orders.</p>
               </form>
             </div>
           </div>
         );
       });
+      return (
+        <div>
+          {lol}
+          <hr></hr>
+          <h3>Total price: </h3> <p>{totalPrice}</p>
+        </div>
+      );
     }
     return <RenderShop></RenderShop>;
   }
@@ -323,12 +269,8 @@ export default function products(props) {
       <Head>
         <title>All Products</title>
       </Head>
-      <Header
-        cartItems={cartItems}
-        cartState={cartState}
-        openCart={toggleCartState}
-      ></Header>
-      {renderProducts()}
+      <Header cartItems={cartItems} cartState={cartState} openCart={toggleCartState}></Header>
+      {renderCart()}
     </div>
   );
 }
