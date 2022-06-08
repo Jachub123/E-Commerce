@@ -1,0 +1,23 @@
+[
+  {
+    "id": "1",
+    "name": "nike Air",
+    "price": "55",
+    "clothing": true,
+    "img": "/img/Nike_Air_BlackGrey.webp"
+  },
+  {
+    "id": "2",
+    "name": "Picture Frames",
+    "price": "20",
+    "clothing": false,
+    "img": "/img/Metal_PictureFrame.webp"
+  },
+  {
+    "id": "3",
+    "name": "Dog Collar",
+    "price": "45",
+    "clothing": true,
+    "img": "/img/lederhalsband.jpg"
+  }
+]
